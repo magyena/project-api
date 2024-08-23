@@ -1,0 +1,86 @@
+openapi: 3.0.0
+info:
+  title: DIGIPAN
+  version: "1.0"
+paths:
+  /families:
+    get:
+      summary: Get all families
+      responses:
+        '200':
+          description: A list of families
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      description: The unique identifier for the family
+                    nama_keluarga:
+                      type: string
+                      description: The name of the family
+                    nama:
+                      type: string
+                      description: The name of the individual
+                    tempat_lahir:
+                      type: string
+                      description: Place of birth
+                    tanggal_lahir:
+                      type: string
+                      format: date
+                      description: Date of birth
+                    nomor_keluarga:
+                      type: string
+                      description: Family number
+                    hubungan_keluarga:
+                      type: string
+                      description: Relationship to the family
+
+  paths:
+  /families/by-name/{nama_keluarga}:
+    get:
+      summary: Get families by family name
+      parameters:
+        - name: nama_keluarga
+          in: path
+          required: true
+          schema:
+            type: string
+            description: The name of the family
+      responses:
+        '200':
+          description: A list of families with the given name
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      description: The unique identifier for the family
+                    nama_keluarga:
+                      type: string
+                      description: The name of the family
+                    nama:
+                      type: string
+                      description: The name of the individual
+                    tempat_lahir:
+                      type: string
+                      description: Place of birth
+                    tanggal_lahir:
+                      type: string
+                      format: date
+                      description: Date of birth
+                    nomor_keluarga:
+                      type: string
+                      description: Family number
+                    hubungan_keluarga:
+                      type: string
+                      description: Relationship to the family
+        '404':
+          description: No families found with the given name
